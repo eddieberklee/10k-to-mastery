@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fordate: 2013-06-24
+  whichtype: MyString
+  count: 1
+  checkmark: false
+
+two:
+  fordate: 2013-06-24
+  whichtype: MyString
+  count: 1
+  checkmark: false
