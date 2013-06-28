@@ -3,3 +3,5 @@ class AddActivityIdToLogs < ActiveRecord::Migration
     add_column :logs, :activity_id, :integer
   end
 end
+
+

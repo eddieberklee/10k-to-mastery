@@ -1,0 +1,12 @@
+
+<%= form_for(@log) do |f| %>
+  <h2>What's your <%= @activity.name.upcase %> count today?</h2>
+  <br/>
+  <%= f.text_field 'count', {:id=>'count-input'} %>
+  <%= f.hidden_field :whichtype, :value => @activity.whichtype %>
+  <%= f.hidden_field :activity_id, :value => @activity.id %>
+  <%= submit_tag "New" %>
+<% end %>
+
+
+

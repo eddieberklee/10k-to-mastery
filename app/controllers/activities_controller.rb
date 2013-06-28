@@ -14,7 +14,11 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
-    @logs = @activity.legal_logs
+    @activity_stats = @activity.stats
+    puts 'ASDFASDFASDFASDFASDFASDF'
+    puts @activity_stats
+    # @logs = @activity.legal_logs
+    @logs = @activity.logs
     @log = @activity.logs.new
 
     respond_to do |format|

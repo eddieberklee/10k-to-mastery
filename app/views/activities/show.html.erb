@@ -1,9 +1,3 @@
-<% if @activity.whichtype == 'count' %>
-  <%= render 'show_count' %>
-<% elsif @activity.whichtype == 'checkmark' %>
-  <%= render 'show_checkmark' %>
-<% end %>
-
 
 <p id="notice"><%= notice %></p>
 
@@ -18,19 +12,48 @@
 </p>
 
 
-<%= @logs.each do |l| %>
-  <div><%= l.checkmark %></div>
+<p>
+  <% @logs.each do |l| %>
+    <div>
+      <%= l.fordate %>
+      <% if @activity.whichtype == 'checkmark' %>
+        <%= l.checkmark %>
+      <% elsif @activity.whichtype == 'count' %>
+        <%= l.count %>
+      <% end %>
+    </div>
+  <% end %>
+</p>
+
+<style>
+  .checkmark-selected {
+    background-color: #efefef;
+  }
+</style>
+
+<% if @activity.whichtype == 'checkmark' %>
+  <%= render 'show_checkmark' %>
+<% elsif @activity.whichtype == 'count' %>
+  <%= render 'show_count' %>
 <% end %>
 
-
-<%= form_for(@log) do |f| %>
-  <%= f.label @activity.whichtype %><br/>
-  <%= f.text_field @activity.whichtype, {:class => 'new-log-input'} %>
-  <%= f.hidden_field :whichtype, :value => @activity.whichtype %>
-  <%= f.hidden_field :activity_id, :value => @activity.id %>
-  <%= submit_tag "New" %>
-<% end %>
-
+<br/>
 
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
 <%= link_to 'Back', activities_path %>
+
+<script>
+  $(function() {
+    $('#check').click(function() {
+      $('#checkmark-input').attr('value','1');
+      $('#cross').removeClass('checkmark-selected');
+      $('#check').addClass('checkmark-selected');
+    });
+    $('#cross').click(function() {
+      $('#checkmark-input').attr('value','0');
+      $('#check').removeClass('checkmark-selected');
+      $('#cross').addClass('checkmark-selected');
+    });
+  });
+</script>
+
