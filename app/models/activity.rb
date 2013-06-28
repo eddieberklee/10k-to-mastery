@@ -14,8 +14,10 @@ class Activity < ActiveRecord::Base
     time = Time.now
     year = time.year
     month = time.month
+    month <= 9 ? month = "0#{month}" : 'nothing to worry about'
     day = time.day
-    self.logs.where("fordate = #{year}-#{month}-#{day}")
+    self.logs.where("fordate = #{year}-#{month}-#{day}").first
+    self.logs.inspect
   end
 
   def ordered_logs

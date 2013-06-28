@@ -16,6 +16,8 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     @logs = @activity.ordered_logs
     @log = @activity.logs.new
+
+    @today = @activity.today_log
     @past = @activity.past_logs
 
     respond_to do |format|
