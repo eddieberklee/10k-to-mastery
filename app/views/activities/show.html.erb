@@ -23,7 +23,13 @@
       <% end %>
     </div>
   <% end %>
-  <%= @today %>
+  Today:<br/>
+  <%= @today.fordate %>
+  <% if @activity.whichtype == 'checkmark' %>
+    <%= @today.checkmark %>
+  <% elsif @activity.whichtype == 'count' %>
+    <%= @today.count %>
+  <% end %>
 </p>
 
 <style>

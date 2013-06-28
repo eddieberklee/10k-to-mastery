@@ -16,8 +16,16 @@ class Activity < ActiveRecord::Base
     month = time.month
     month <= 9 ? month = "0#{month}" : 'nothing to worry about'
     day = time.day
-    self.logs.where("fordate = #{year}-#{month}-#{day}").first
-    self.logs.inspect
+    day <= 9 ? day = "0#{day}" : 'nothing to worry about'
+
+    ordered_logs = self.ordered_logs
+    logger.debug ordered_logs.inspect
+    # self.logs.where("fordate = #{year}-#{month}-#{day}").first
+    
+    most_recent = self.logs[-2]
+    if most_recent.fordate == Time.now.to_date
+      most_recent
+    end
   end
 
   def ordered_logs
@@ -28,7 +36,9 @@ class Activity < ActiveRecord::Base
     limit = 4
     ordered_logs = self.ordered_logs
     ordered_logs.length-1-limit < 0 ? start_index = 0 : start_index = ordered_logs.length-1-limit
-    ordered_logs.slice(start_index,ordered_logs.length-1)
+    logger.debug "//////////////////////"
+    logger.debug ordered_logs.inspect
+    ordered_logs[start_index..ordered_logs.length-2]
   end
 
 end
