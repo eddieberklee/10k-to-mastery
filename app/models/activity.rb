@@ -23,8 +23,10 @@ class Activity < ActiveRecord::Base
     # self.logs.where("fordate = #{year}-#{month}-#{day}").first
     
     most_recent = self.logs[-2]
-    if most_recent.fordate == Time.now.to_date
-      most_recent
+    unless most_recent.nil?
+      if most_recent.fordate == Time.now.to_date
+        most_recent
+      end
     end
   end
 
