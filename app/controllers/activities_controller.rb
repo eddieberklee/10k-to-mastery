@@ -14,12 +14,9 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @activity = Activity.find(params[:id])
-    @activity_stats = @activity.stats
-    puts 'ASDFASDFASDFASDFASDFASDF'
-    puts @activity_stats
-    # @logs = @activity.legal_logs
-    @logs = @activity.logs
+    @logs = @activity.ordered_logs
     @log = @activity.logs.new
+    @past = @activity.past_logs
 
     respond_to do |format|
       format.html # show.html.erb

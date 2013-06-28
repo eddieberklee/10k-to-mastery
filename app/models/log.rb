@@ -8,16 +8,9 @@ class Log < ActiveRecord::Base
   def activity_id_exists
     return false if self.activity_id.nil?
   end
-
-  def past_logs
-    limit = 5
-    # pull past 5 logs before today's date
-    # order by date
-    # grab last 6 then reject today's
-  end
   
-  # Basically an existing entry clobber.
-  before_save do
+  before_save :clobber_existing_fordate
+  def clobber_existing_fordate
     logs = Activity.find(self.activity_id).logs #.map { |log| log.fordate.to_s }
 
     found_duplicate = nil
@@ -31,19 +24,19 @@ class Log < ActiveRecord::Base
     }
 
     unless found_duplicate.nil?
-      logger.debug 'Duplicate Found. ########'
       duplicate = Log.find(duplicate_id)
       whichtype = duplicate.whichtype
       duplicate.destroy
     end
   end
   
-  after_save :update_fordate
-  def update_fordate
+  after_save :populate_fordate
+  def populate_fordate
     if self.fordate.nil?
       # "if" loop prevents recursion.
       self.update_attributes(:fordate => self.created_at.to_s.split(' ')[0])
       self.save
     end
   end
+
 end

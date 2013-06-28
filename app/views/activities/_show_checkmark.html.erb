@@ -1,5 +1,5 @@
 
-<%= form_for(@log) do |f| %>
+<%= form_for(@log, {:class => 'record-today'}) do |f| %>
   <h2>Did you <%= @activity.name.upcase %> today?</h2>
   <img id="check" src="/img/checkmark_medium.png"/>
   <img id="cross" src="/img/cross_medium.png"/>
