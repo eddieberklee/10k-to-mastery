@@ -1,6 +1,11 @@
 
 <p id="notice"><%= notice %></p>
 
+<% if @activity.whichtype == 'checkmark' %>
+  <img src="/assets/blue_xs.png" style="float:left;margin-right:5px;position:relative;top:-3px;"/>
+<% elsif @activity.whichtype == 'count' %>
+  <img src="/assets/green_xs.png" style="float:left;margin-right:5px;position:relative;top:-3px;"/>
+<% end %>
 <h1>
   <%= @activity.name.capitalize %>
 </h1>
@@ -54,15 +59,17 @@
 
 <script>
   $(function() {
-    $('#check').click(function() {
+    $('.check-selection').click(function() {
       $('#checkmark-input').attr('value','1');
-      $('#cross').removeClass('checkmark-selected');
-      $('#check').addClass('checkmark-selected');
+      $other = $('.cross-selection');
+      $other.removeClass('checkmark-selected');
+      $(this).addClass('checkmark-selected');
     });
-    $('#cross').click(function() {
+    $('.cross-selection').click(function() {
       $('#checkmark-input').attr('value','0');
-      $('#check').removeClass('checkmark-selected');
-      $('#cross').addClass('checkmark-selected');
+      $(this).removeClass('checkmark-selected');
+      $other = $('check-selection');
+      $other.addClass('checkmark-selected');
     });
   });
 </script>

@@ -1,8 +1,7 @@
-
+<h2>Did you <%= @activity.name.upcase %> today?</h2>
 <%= form_for(@log, {:class => 'record-today'}) do |f| %>
-  <h2>Did you <%= @activity.name.upcase %> today?</h2>
-  <img id="check" src="/img/checkmark_medium.png"/>
-  <img id="cross" src="/img/cross_medium.png"/>
+  <img class="check-selection" src="/assets/checkmark_medium.png"/>
+  <img class="cross-selection" src="/assets/cross_medium.png"/>
   <br/>
   <%= f.hidden_field 'checkmark', {:id=>'checkmark-input'} %>
   <%= f.hidden_field :whichtype, :value => @activity.whichtype %>
