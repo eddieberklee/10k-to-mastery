@@ -36,11 +36,8 @@ class Activity < ActiveRecord::Base
 
   def past_logs
     limit = 4
-    ordered_logs = self.ordered_logs
-    ordered_logs.length-1-limit < 0 ? start_index = 0 : start_index = ordered_logs.length-1-limit
-    logger.debug "//////////////////////"
-    logger.debug ordered_logs.inspect
-    ordered_logs[start_index..ordered_logs.length-2]
+    ordered_logs = self.ordered_logs.reverse
+    ordered_logs.slice(1, 4).reverse
   end
 
 end
