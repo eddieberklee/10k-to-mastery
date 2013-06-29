@@ -36,8 +36,11 @@ class Activity < ActiveRecord::Base
 
   def past_logs
     limit = 4
-    ordered_logs = self.ordered_logs.reverse
-    ordered_logs.slice(1, 4).reverse
+    unless ordered_logs.empty? or ordered_logs.nil?
+      ordered_logs = self.ordered_logs.reverse
+      ordered_logs.slice(1, 4).reverse
+    end
+    []
   end
 
 end

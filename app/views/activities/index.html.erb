@@ -11,11 +11,25 @@
 
 <% @activities.each do |activity| %>
   <tr>
-    <td><%= activity.name %></td>
+    <td>
+      <a href="<%=activity_path(activity)%>">
+      <%= activity.name.upcase %>
+      </a>
+    </td>
     <td><%= activity.whichtype %></td>
-    <td><%= link_to 'Show', activity %></td>
-    <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-    <td><%= link_to 'Destroy', activity, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <!-- <td><%= link_to 'Show', activity %></td>-->
+    <td>
+      <!--<%= link_to 'Edit', edit_activity_path(activity) %>-->
+      <a href="<%=edit_activity_path(activity)%>">
+        <img src="/assets/bootstrap_pencil.png"/>
+      </a>
+    </td>
+    <td>
+      <!--<%= link_to 'Destroy', activity, :method => :delete, :data => { :confirm => 'Are you sure?' } %>-->
+      <a href="<%=activity_path(activity)%>" rel="nofollow" data-method="delete" data-confirm="You sure?">
+        <img src="/assets/bootstrap_trashcan.png"/>
+      </a>
+    </td>
   </tr>
 <% end %>
 </table>
