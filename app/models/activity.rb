@@ -11,20 +11,12 @@ class Activity < ActiveRecord::Base
   end
 
   def today_log
-    time = Time.now
-    year = time.year
-    month = time.month
-    month <= 9 ? month = "0#{month}" : 'nothing to worry about'
-    day = time.day
-    day <= 9 ? day = "0#{day}" : 'nothing to worry about'
-
     ordered_logs = self.ordered_logs
-    logger.debug ordered_logs.inspect
-    # self.logs.where("fordate = #{year}-#{month}-#{day}").first
     
     most_recent = self.logs[-2]
     unless most_recent.nil?
-      if most_recent.fordate == Time.now.to_date
+      # technically fordate is already a date object though
+      if most_recent.fordate.to_date == Time.now.to_date
         most_recent
       end
     end
@@ -36,11 +28,18 @@ class Activity < ActiveRecord::Base
 
   def past_logs
     limit = 4
-    unless ordered_logs.empty? or ordered_logs.nil?
+    ordered_logs = self.ordered_logs
+    if ordered_logs.empty? or ordered_logs.nil?
+      []
+    else
       ordered_logs = self.ordered_logs.reverse
-      ordered_logs.slice(1, 4).reverse
+      if ordered_logs[0].fordate.to_date == Time.now.to_date
+        ordered_logs.slice(1, 4).reverse
+      else
+        ordered_logs.slice(0, 4).reverse
+      end
+
     end
-    []
   end
 
 end
