@@ -67,9 +67,9 @@
     });
     $('.cross-selection').click(function() {
       $('#checkmark-input').attr('value','0');
-      $(this).removeClass('checkmark-selected');
-      $other = $('check-selection');
-      $other.addClass('checkmark-selected');
+      $other = $('.check-selection');
+      $(this).addClass('checkmark-selected');
+      $other.removeClass('checkmark-selected');
     });
   });
 </script>
