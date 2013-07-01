@@ -13,7 +13,7 @@
   <tr>
     <td>
       <a href="<%=activity_path(activity)%>">
-      <%= activity.name.upcase %>
+      <%= activity.name.capitalize %>
       </a>
     </td>
     <td><%= activity.whichtype %></td>
@@ -36,4 +36,4 @@
 
 <br />
 
-<%= link_to 'New Activity', new_activity_path %>
+<%= link_to 'Start Learning a New Skill!', new_activity_path %>

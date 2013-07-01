@@ -7,5 +7,54 @@
   <%= submit_tag "New" %>
 <% end %>
 
+<div id="holder" style="width: 220px; height: 220px;">
+</div>
+
+<script>
+  $(function() {
+    var r = Raphael("holder"),
+      data1 = [<%= @past.map do |l| l.count end %>],
+      fin = function () {
+        this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+      },
+      fout = function () {
+        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+      },
+      txtattr = { font: "12px sans-serif" };
+
+    var barfill = '#2ECC71';
+    var label_bgcolor = 'transparent';
+    var label_fontcolor = '#ffffff';
+
+    var bar_width = 200;
+    var bar_height = 200;
+    var gutter_percentage = '70%';
+
+    r.barchart(0,0,bar_width,bar_height,data1,{
+      type: "round",
+      gutter: gutter_percentage,
+    }).hover(fin,fout).attr({fill:barfill});
+
+    var label1x = 31;
+    var label2x = 31+45;
+    var label3x = 31+45*2;
+    var label4x = 31+45*3;
+    // label3x = 120;
+    // label4x = 170;
+    var label1y = 165;
+    var label2y = 165;
+    var label3y = 165;
+    var label4y = 165;
+
+    var label_styling = [
+      {fill: label_bgcolor},
+      {fill: label_fontcolor}
+    ];
+    r.label(label1x,label1y,<%=@past[0].count%>).attr(label_styling);
+    r.label(label2x,label2y,<%=@past[1].count%>).attr(label_styling);
+    r.label(label3x,label3y,<%=@past[2].count%>).attr(label_styling);
+    r.label(label4x,label4y,<%=@past[3].count%>).attr(label_styling);
+  });
+</script>
 
 
