@@ -1,39 +1,26 @@
 <h1>Skills:</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<ul id="activities">
 <% @activities.each do |activity| %>
-  <tr>
-    <td>
-      <a href="<%=activity_path(activity)%>">
-      <%= activity.name.capitalize %>
-      </a>
-    </td>
-    <td><%= activity.whichtype %></td>
-    <!-- <td><%= link_to 'Show', activity %></td>-->
-    <td>
-      <!--<%= link_to 'Edit', edit_activity_path(activity) %>-->
-      <a href="<%=edit_activity_path(activity)%>">
-        <img src="/assets/bootstrap_pencil.png"/>
-      </a>
-    </td>
-    <td>
-      <!--<%= link_to 'Destroy', activity, :method => :delete, :data => { :confirm => 'Are you sure?' } %>-->
-      <a href="<%=activity_path(activity)%>" rel="nofollow" data-method="delete" data-confirm="You sure?">
-        <img src="/assets/bootstrap_trashcan.png"/>
-      </a>
-    </td>
-  </tr>
+  <li>
+    <a href="<%=activity_path(activity)%>">
+    <%= activity.name.capitalize %>
+    </a>
+
+    <a class="action" href="<%=activity_path(activity)%>" rel="nofollow" data-method="delete" data-confirm="You sure?">
+      <img src="/assets/bootstrap_trashcan.png"/>
+    </a>
+
+    <a class="action" href="<%=edit_activity_path(activity)%>">
+      <img src="/assets/bootstrap_pencil.png"/>
+    </a>
+  </li>
 <% end %>
-</table>
+  <li class="new-skill">
+    <%= link_to '+ New Skill', new_activity_path %>
+  </li>
+</ul>
 
 <br />
 
-<%= link_to 'Start Learning a New Skill!', new_activity_path %>
+

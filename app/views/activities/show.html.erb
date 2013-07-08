@@ -1,20 +1,18 @@
 
+<div class="h20"></div>
+
 <p id="notice"><%= notice %></p>
 
-<% if @activity.whichtype == 'checkmark' %>
-  <img src="/assets/blue_xs.png" style="float:left;margin-right:5px;position:relative;top:-3px;"/>
-<% elsif @activity.whichtype == 'count' %>
-  <img src="/assets/green_xs.png" style="float:left;margin-right:5px;position:relative;top:-3px;"/>
-<% end %>
-<h1>
-  <%= @activity.name.capitalize %>
-</h1>
-
-<p>
-  <b>Type:</b>
-  <%= @activity.whichtype %>
-</p>
-
+<span class="activity-title">
+  <h1 class="<%=@activity.whichtype%>">
+    <%= @activity.name.capitalize %>
+  </h1>
+  <% if @activity.whichtype == 'checkmark' %>
+    <img src="/assets/blue_xs.png"/>
+  <% elsif @activity.whichtype == 'count' %>
+    <img src="/assets/green_xs.png"/>
+  <% end %>
+</span><!-- /.activity-title -->
 
 <p>
   <% @past.each do |l| %>

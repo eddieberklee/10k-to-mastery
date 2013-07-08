@@ -7,7 +7,7 @@
   <%= submit_tag "New" %>
 <% end %>
 
-<div id="holder" style="width: 220px; height: 220px;">
+<div id="holder" style="width: 220px; height: 220px;border:1px solid #cccccc;">
 </div>
 
 <script>
@@ -20,9 +20,11 @@
       fout = function () {
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
       },
-      txtattr = { font: "12px sans-serif" };
+      txtattr = { font: "16px sans-serif" };
 
-    var barfill = '#2ECC71';
+    // thats the green color but red/yellow/green need to be reserved for "health"
+    // var barfill = '#2ECC71';
+    var barfill = '#cccccc';
     var label_bgcolor = 'transparent';
     var label_fontcolor = '#ffffff';
 
@@ -33,7 +35,8 @@
     r.barchart(0,0,bar_width,bar_height,data1,{
       type: "round",
       gutter: gutter_percentage,
-    }).hover(fin,fout).attr({fill:barfill});
+    }).attr({fill:barfill});
+    // }).hover(fin,fout).attr({fill:barfill});
 
     var label1x = 31;
     var label2x = 31+45;
@@ -48,12 +51,23 @@
 
     var label_styling = [
       {fill: label_bgcolor},
-      {fill: label_fontcolor}
+      {fill: label_fontcolor},
     ];
     r.label(label1x,label1y,<%=@past[0].count%>).attr(label_styling);
     r.label(label2x,label2y,<%=@past[1].count%>).attr(label_styling);
     r.label(label3x,label3y,<%=@past[2].count%>).attr(label_styling);
     r.label(label4x,label4y,<%=@past[3].count%>).attr(label_styling);
+
+    label_styling = [
+      {fill: 'transparent'},
+      {fill: '#aaaaaa'},
+    ];
+    var offset = 25;
+    r.label(label1x,label1y+offset,"<%=@past_md[0]%>").attr(label_styling);
+    r.label(label2x,label2y+offset,"<%=@past_md[1]%>").attr(label_styling);
+    r.label(label3x,label3y+offset,"<%=@past_md[2]%>").attr(label_styling);
+    r.label(label4x,label4y+offset,"<%=@past_md[3]%>").attr(label_styling);
+
   });
 </script>
 

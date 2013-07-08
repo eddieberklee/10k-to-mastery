@@ -19,6 +19,8 @@ class ActivitiesController < ApplicationController
 
     @today = @activity.today_log
     @past = @activity.past_logs
+    @past_md = @past.map { |p| p.monthday }
+    puts @past_md
 
     respond_to do |format|
       format.html # show.html.erb

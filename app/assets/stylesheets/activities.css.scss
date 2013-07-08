@@ -1,3 +1,57 @@
 // Place all the styles related to the activities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#activities {
+  margin-top: 10px;
+  $w: 200px;
+  width: $w;
+  li {
+    $p: 10px;
+    width: $w - $p;
+    padding-left: $p;
+
+    $h: 32px;
+    height:      $h;
+    line-height: $h;
+    font-size: 1.3em;
+
+    $b: #eee;
+    background-color: $b;
+    border-bottom: 1px solid darken($b,10%);
+
+    text-transform: capitalize;
+
+    a {
+      color: #000;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  .action {
+    display: inline-block;
+    float: right;
+    padding: 0 10px;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+
+  .new-skill {
+    text-align: center;
+    a {
+      color: #aaa;
+      position: relative;
+      left: -10px;
+    }
+    &:hover a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+
+

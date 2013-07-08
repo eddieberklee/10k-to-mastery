@@ -1,0 +1,30 @@
+
+#container {
+  padding: 15px;
+  width: 940px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.0em;
+  font-weight: 500;
+}
+
+input {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+}
+input[type=text] {
+  border: 0;
+  border: 1px solid #ccc;
+}
+input[type=submit] {
+  background-color: #efefef;
+  padding: 2px;
+  padding-left:  12px;
+  padding-right: 12px;
+  border: 0;
+}
+
+
+

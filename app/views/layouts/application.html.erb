@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>10K to Mastery</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,7 +11,13 @@
 </head>
 <body>
 
-<%= yield %>
+  <div id="topbar">
+    <img src="/assets/logo_10k.png"/>
+  </div><!-- /#topbar -->
+
+  <div id="container">
+    <%= yield %>
+  </div><!-- /#container -->
 
 </body>
 </html>
