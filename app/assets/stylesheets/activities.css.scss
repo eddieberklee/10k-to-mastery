@@ -4,14 +4,14 @@
 
 #activities {
   margin-top: 10px;
-  $w: 200px;
+  $w: 250px;
   width: $w;
   li {
     $p: 10px;
     width: $w - $p;
     padding-left: $p;
 
-    $h: 32px;
+    $h: 40px;
     height:      $h;
     line-height: $h;
     font-size: 1.3em;
@@ -21,6 +21,7 @@
     border-bottom: 1px solid darken($b,10%);
 
     text-transform: capitalize;
+    position: relative;
 
     a {
       color: #000;
@@ -51,6 +52,27 @@
       color: black;
     }
   }
+}
+
+$green: #2ac86d;
+$blue: #3095d8;
+
+.type-hover {
+  width:  26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top:  8px;
+  left: 6px;
+  z-index: -1;
+}
+.checkmark-hover {
+  background-image: url('/assets/blue_xs.png');
+  // background-color: $blue;
+}
+.count-hover {
+  background-image: url('/assets/green_xs.png');
+  // background-color: $green;
 }
 
 

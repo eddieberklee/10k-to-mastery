@@ -1,8 +1,10 @@
 <h1>Skills:</h1>
 
-<ul id="activities">
-<% @activities.each do |activity| %>
+<ul id="activities" style="margin-left:25px;">
+
+  <% @activities.each do |activity| %>
   <li>
+    <div class="type-hover <%= activity.whichtype %>-hover"></div>
     <a href="<%=activity_path(activity)%>">
     <%= activity.name.capitalize %>
     </a>
@@ -15,12 +17,30 @@
       <img src="/assets/bootstrap_pencil.png"/>
     </a>
   </li>
-<% end %>
+  <% end %>
+
   <li class="new-skill">
-    <%= link_to '+ New Skill', new_activity_path %>
+    <%= link_to 'New Skill', new_activity_path %>
   </li>
 </ul>
 
 <br />
 
-
+<script>
+  /* Hover to show icon */
+  $(function() {
+    $("#activities li").hover(function() {
+      $icon = $(this).children('.type-hover');
+      $icon.stop().animate({
+        'left' : '-26px',
+      }, 150, function() {
+      });
+    }, function() {
+      $icon = $(this).children('.type-hover');
+      $icon.stop().animate({
+        'left' : '6px',
+      }, 150, function() {
+      });
+    });
+  });
+</script>
