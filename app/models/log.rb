@@ -41,7 +41,7 @@ class Log < ActiveRecord::Base
 
   def monthday
     d = self.fordate
-    [d.strftime(format='%B'), d.day].join ' '
+    [d.strftime(format='%b'), d.day].join ' '
   end
 
 end

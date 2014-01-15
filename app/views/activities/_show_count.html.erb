@@ -4,15 +4,22 @@
   <%= f.text_field 'count', {:id=>'count-input'} %>
   <%= f.hidden_field :whichtype, :value => @activity.whichtype %>
   <%= f.hidden_field :activity_id, :value => @activity.id %>
-  <%= submit_tag "New" %>
+  <%= submit_tag "Log", :style=>"background-color:orange;font-size:0.9em;position:relative;left:-61px;top:-2px;" %>
 <% end %>
 
-<div id="holder" style="width: 220px; height: 220px;border:1px solid #cccccc;">
+<div style="height:20px;"></div>
+
+<div id="chart-holder" style="width: 220px; height: 260px; border: 1px solid #ddd;">
+  <div style="width: 100%; height: 30px; line-height: 28px; background-color: #ddd; text-align: center; font-weight: bold; color: #444;">
+    History
+  </div>
+  <div id="raphael-chart">
+  </div>
 </div>
 
 <script>
   $(function() {
-    var r = Raphael("holder"),
+    var r = Raphael("raphael-chart"), // tells raphael to place the svg in #raphael-chart
       data1 = [<%= @past.map do |l| l.count end %>],
       fin = function () {
         this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
@@ -26,28 +33,28 @@
     // var barfill = '#2ECC71';
     var barfill = '#cccccc';
     var label_bgcolor = 'transparent';
-    var label_fontcolor = '#ffffff';
+    var label_fontcolor = '#666';
 
-    var bar_width = 200;
+    var bar_width = 220;
     var bar_height = 200;
     var gutter_percentage = '70%';
 
     r.barchart(0,0,bar_width,bar_height,data1,{
-      type: "round",
+      type: "square",
       gutter: gutter_percentage,
     }).attr({fill:barfill});
     // }).hover(fin,fout).attr({fill:barfill});
 
     var label1x = 31;
-    var label2x = 31+45;
-    var label3x = 31+45*2;
-    var label4x = 31+45*3;
+    var label2x = 31+51;
+    var label3x = 31+51*2;
+    var label4x = 31+51*3;
     // label3x = 120;
     // label4x = 170;
-    var label1y = 165;
-    var label2y = 165;
-    var label3y = 165;
-    var label4y = 165;
+    var label1y = 188;
+    var label2y = 188;
+    var label3y = 188;
+    var label4y = 188;
 
     var label_styling = [
       {fill: label_bgcolor},
@@ -60,9 +67,9 @@
 
     label_styling = [
       {fill: 'transparent'},
-      {fill: '#aaaaaa'},
+      {fill: '#888'},
     ];
-    var offset = 25;
+    var offset = 22;
     r.label(label1x,label1y+offset,"<%=@past_md[0]%>").attr(label_styling);
     r.label(label2x,label2y+offset,"<%=@past_md[1]%>").attr(label_styling);
     r.label(label3x,label3y+offset,"<%=@past_md[2]%>").attr(label_styling);

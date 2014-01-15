@@ -16,8 +16,9 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+
     <%= f.label :whichtype %><br />
-    <%= f.text_field :whichtype %>
+    <%= f.select :whichtype, {"Checkmark"=>"checkmark","Count"=>"count"} %>
   </div>
   <div class="actions">
     <%= f.submit %>

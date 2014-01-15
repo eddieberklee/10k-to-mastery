@@ -17,9 +17,13 @@
 <p>
   <% @past.each do |l| %>
     <div>
-      <%= l.fordate %>
+      <%= "#{l.fordate.strftime(format='%b')} #{l.fordate.day.to_s}" %>
       <% if @activity.whichtype == 'checkmark' %>
-        <%= l.checkmark %>
+        <% if l.checkmark %>
+          <img src="/assets/checkmark_small.png"/>
+        <% else %>
+          <img src="/assets/cross_small.png"/>
+        <% end %>
       <% elsif @activity.whichtype == 'count' %>
         <%= l.count %>
       <% end %>

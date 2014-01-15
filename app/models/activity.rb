@@ -33,11 +33,11 @@ class Activity < ActiveRecord::Base
       []
     else
       ordered_logs = self.ordered_logs.reverse
-      if ordered_logs[0].fordate.to_date == Time.now.to_date
-        ordered_logs.slice(1, 4).reverse
-      else
-        ordered_logs.slice(0, 4).reverse
-      end
+      # if ordered_logs[0].fordate.to_date == Time.now.to_date
+      #   ordered_logs.slice(1, 4).reverse
+      # else
+      ordered_logs.slice(0, 4)
+      #end
 
     end
   end
